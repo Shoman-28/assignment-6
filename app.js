@@ -4,6 +4,8 @@ const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
+
+const selictImage = document.getElementById('selictImage');
 // selected image 
 let sliders = [];
 
@@ -15,6 +17,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
+  selictImage.style.display = 'none';
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -28,12 +31,38 @@ const showImages = (images) => {
 
 }
 
+// const getImages = (query) => {
+//   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
+//     .then(response => response.json())
+//     .then(data => showImages(data.hits))
+//     .catch(err => console.log(err))
+// }
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
-    .then(response => response.json())
-    .then(data => showImages(data.hits))
-    .catch(err => console.log(err))
+  .then(response => response.json())
+  .then(data => {
+
+    const vewImge = data.hits
+    if (vewImge == 0) {
+
+      selictImage.innerHTML = `<div class="col-md-9 m-5 p-5">
+        <h1 style="color:red">Sorry, did't match your search image!</h1>
+        </div>`;
+        selictImage.style.display = 'block';
+        imagesArea.style.display = 'none';
+    
+    }else{
+
+      showImages(vewImge)
+      
+      
+      
+    }              
+                
+  })   
+    
 }
+
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
