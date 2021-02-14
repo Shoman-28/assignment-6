@@ -37,26 +37,26 @@ const showImages = (images) => {
 //     .then(data => showImages(data.hits))
 //     .catch(err => console.log(err))
 // }
+
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
   .then(response => response.json())
   .then(data => {
 
-    const vewImge = data.hits
+    const vewImge = data.hits    
     if (vewImge == 0) {
 
+      // ====add-error-message====
       selictImage.innerHTML = `<div class="col-md-9 m-5 p-5">
         <h1 style="color:red">Sorry, did't match search your image!</h1>
         </div>`;
+
         selictImage.style.display = 'block';
         imagesArea.style.display = 'none';
     
     }else{
-
-      showImages(vewImge)
-      
-      
-      
+      showImages(vewImge)     
+           
     }              
                 
   })   
