@@ -46,7 +46,7 @@ const getImages = (query) => {
     if (vewImge == 0) {
 
       selictImage.innerHTML = `<div class="col-md-9 m-5 p-5">
-        <h1 style="color:red">Sorry, did't match your search image!</h1>
+        <h1 style="color:red">Sorry, did't match search your image!</h1>
         </div>`;
         selictImage.style.display = 'block';
         imagesArea.style.display = 'none';
